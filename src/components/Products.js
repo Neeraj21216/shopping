@@ -40,12 +40,12 @@ function Products(props) {
             <span className="text-green-600 font-bold">${price}</span>
             {   cart.some((p)=>p.id===id)
                 ?(
-                    <span onClick={removehandler} >
+                    <span onClick={removehandler} className="border-2 rounded-full p-1 text-black border-black hover:bg-gray-500 hover:text-white transition " >
                         remove from cart
                     </span>
                     
                 ):(
-                    <span onClick={addhandler}>
+                    <span onClick={addhandler} className="border-2 rounded-full p-1 text-black border-black hover:bg-gray-500 hover:text-white transition ">
                         Add to cart
                     </span>
                 )
