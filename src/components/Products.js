@@ -18,7 +18,7 @@ function Products(props) {
     const  title=props.data.title.substring(0,15);
     const image=props.data.image;
     const price=props.data.price;
-    const description=props.data.description.substring(0,50);
+    const description=props.data.description.substring(0,70);
     console.log(props);
     const Navigate=useNavigate();
     //onclick pe kaise bdhoge aage and then all set 
@@ -32,25 +32,43 @@ function Products(props) {
             // setaddtocart(true);
             dispatch(remove(id));
     }
-    return (<div className="w-[300px] h-[400px] rounded shadow mx-4 my-4 hover:scale-110">
-        <h3>{title}...</h3>
-        <p className="text-gray-400 text-[13px]">{description}...</p>
-        <img src={image} className="h-[300px]"></img>
-        <div className="flex justify-between mx-2 ">
-            <span className="text-green-600 font-bold">${price}</span>
-            {   cart.some((p)=>p.id===id)
-                ?(
-                    <span onClick={removehandler} >
-                        remove from cart
+    return (
+        <div className="w-[300px] h-[500px] rounded shadow-gray-600 shadow-md mx-4 my-16 transition-transform duration-300 hover:scale-110 hover:rounded-xl ">
+            
+            <div className="mx-3  my-4 gap-y-4 ">
+                {/* Title */}
+                    <h3 className="font-bold  text-center my-1 ">{title}...</h3>
+                
+                {/* Description */}
+                    <p className="text-gray-500 text-center text-[11px] my-3 ">{description}...</p>
+            
+                {/* Image */}
+                <img src={image} className="h-[300px] w-full object-cover rounded-t-xl my-5  " />
+            
+                {/* Price & Cart Button */}
+                <div className="flex justify-between items-center mx-2 mt-5 ">
+                    <span className="text-green-600 font-bold">${price}</span>
+            
+                    {/* Conditional Rendering for Cart Button */}
+                    {cart.some((p) => p.id === id) ? (
+                    <span
+                        onClick={removehandler}
+                        className="rounded-full border-2 text-sm  border-gray-950 px-2 py-2  hover:bg-black hover:text-pink-500 transition-all hover:duration-500 hover:scale-x-105 "
+                    >
+                        Remove Item
                     </span>
-                    
-                ):(
-                    <span onClick={addhandler}>
-                        Add to cart
+                    ) : (
+                    <span
+                        onClick={addhandler}
+                        className="rounded-full border-2 text-sm  border-gray-950 px-2 py-2  hover:bg-black hover:text-pink-500 transition-all hover:duration-500 hover:scale-x-105-95 "
+                    >
+                        Add to Cart
                     </span>
-                )
-            }
+                    )}
+                </div>
+            </div>
         </div>
-    </div>);
+      );
+      
 }
 export default Products;

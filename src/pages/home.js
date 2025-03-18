@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Products from '../components/Products';
-import spinners from "../components/spinners";
+// import spinners from "../components/spinners";
+import Spinner from "../components/spinner";
 const URL='https://fakestoreapi.com/products';
 
 function Home(){
     //
-    const[loading,setLoadin]=useState(false);
+    const[loading,setLoadin]=useState(true);
     const [data,setData]=useState([]);
     
     async function fetchData() {
@@ -29,7 +30,7 @@ function Home(){
     return(
         <div className="flex  flex-wrap  justify-center">
     {
-        loading?(<spinners></spinners>):(
+        loading?(<Spinner></Spinner>):(
             data.map((Product) => (
                 <Products key={Product.id} data={Product}></Products>
             ))
